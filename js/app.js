@@ -1,4 +1,45 @@
+// Códigos em JS com Jquery
+// Seleção dos elementos.
+const entrada = $("#entrada");
+const lista = $("#lista");
+// Seleção com aplicação de evento de click
+const btn = $("#btn").click(() => {
+  if (entrada.val() != "") {
+    alertify.confirm(
+      "Confirmação de cadastro",
+      "Você tem certeza que quer incluir o item " + entrada.val(),
+      //* O que será executado com o botão OK
+      function () {
+        // Criando elementos, adicionando classes, atributos e evento de click.
+        let iconeOk = $("<ion-icon></ion-icon>")
+          .attr("name", "checkmark-circle-outline")
+          .addClass("icone")
+          .click(() => {
+            console.log("Eita pleura, agora complicou um pouquinho!!!");
+          });
+        let iconeRemover = $("<ion-icon></ion-icon>")
+          .attr("name", "close-circle-outline")
+          .addClass("icone icone2");
+          iconeRemover.click(() => {
+            itemLista.remove();
+          });
 
+        // Criando elemento com conteúdo, classe e adicinando a estrutura do DOM
+        let itemLista = $(`<li>${entrada.val()}</li>`)
+          .addClass("criado")
+          .append(iconeOk)
+          .append(iconeRemover)
+          .appendTo(lista);
+      },
+      function () {
+        alertify.error("Item não inserido");
+        entrada.value = "";
+      }
+    );
+  }
+});
+ 
+/*
  //Códigos em JS Puro 
 const entrada = document.querySelector("#entrada");
 const btn = document.querySelector("#btn");
@@ -48,4 +89,4 @@ btn.onclick = () => {
       "Você precisa preencher o campo de texto."
     );
   }
-};
+};*/
